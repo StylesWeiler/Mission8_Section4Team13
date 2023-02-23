@@ -20,7 +20,7 @@ namespace Mission8_Section4Team13.Controllers
 
         public IActionResult Index()
         {
-            return View("AddEdit");
+            return View();
         }
        
     }
