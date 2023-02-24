@@ -3,34 +3,116 @@
 }
 @model List<TaskResponse>
 
-<table class="table table-bordered table-striped">
+<div class="row">
+    <div class="col-md-6">
+        <h2>Quadrant 1</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="font-weight-bold">
+                <tr>
+                    <td>Task</td>
+                    <td>Due Date</td>
+                    <td>Complete</td>
+                    <td>Category</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.Where(r => r.quadrant == 1))
+                {
+                    <tr>
+                        <td>@x.task</td>
+                        <td>@x.dueDate</td>
+                        <td>@x.completed</td>
+                        <td>@x.category.categoryName</td>
+                        <td><a asp-controller="Home" asp-action="Edit" asp-route-FilmID="@x.taskId">Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="delete" asp-route-FilmID="@x.taskId">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h2>Quadrant 2</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="font-weight-bold">
+                <tr>
+                    <td>Task</td>
+                    <td>Due Date</td>
+                    <td>Complete</td>
+                    <td>Category</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.Where(r => r.quadrant == 2))
+                {
+                    <tr>
+                        <td>@x.task</td>
+                        <td>@x.dueDate</td>
+                        <td>@x.completed</td>
+                        <td>@x.category.categoryName</td>
+                        <td><a asp-controller="Home" asp-action="Edit" asp-route-FilmID="@x.taskId">Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="delete" asp-route-FilmID="@x.taskId">Delete</a></td>-->
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Quadrant 3</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="font-weight-bold">
+                <tr>
+                    <td>Task</td>
+                    <td>Due Date</td>
+                    <td>Complete</td>
+                    <td>Category</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.Where(r => r.quadrant == 3))
+                {
+                    <tr>
+                        <td>@x.task</td>
+                        <td>@x.dueDate</td>
+                        <td>@x.completed</td>
+                        <td>@x.category.categoryName</td>
+                        <!--
+                        <td><a asp-controller="Home" asp-action="Edit" asp-route-FilmID="@x.taskId">Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="delete" asp-route-FilmID="@x.taskId">Delete</a></td>-->
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h2>Quadrant 4</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="font-weight-bold">
+                <tr>
+                    <td>Task</td>
+                    <td>Due Date</td>
+                    <td>Complete</td>
+                    <td>Category</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.Where(r => r.quadrant == 4))
+                {
+                    <tr>
+                        <td>@x.task</td>
+                        <td>@x.dueDate</td>
+                        <td>@x.completed</td>
+                        <td>@x.category.categoryName</td>
+                        <!--
+                        <td><a asp-controller="Home" asp-action="Edit" asp-route-FilmID="@x.taskId">Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="delete" asp-route-FilmID="@x.taskId">Delete</a></td>-->
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-    <thead class="font-weight-bold">
-        <tr>
-            <td>Task</td>
-            <td>Due Date</td>
-            <td>Quadrant</td>
-            <td>Complete</td>
-            <td>Category</td>
-        </tr>
-    </thead>
+</div>
 
-    <tbody>
-        @foreach (var x in Model) //model does need to be "Model"
-        {
-        <tr>
-            <td>@x.task</td>
-            <td>@x.dueDate</td>
-            <td>@x.quadrant</td>
-            <td>@x.completed</td>
-            <td>@x.category.categoryName</td>
-            <!--
-    <td><a asp-controller="Home" asp-action="Edit" asp-route-FilmID="@x.taskId">Edit</a></td>
-    <td><a asp-controller="Home" asp-action="delete" asp-route-FilmID="@x.taskId">Delete</a></td>-->
 
-        </tr>
-        }
-        <tr></tr>
-    </tbody>
-
-</table>
