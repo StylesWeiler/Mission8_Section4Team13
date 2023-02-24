@@ -49,6 +49,44 @@ namespace Mission8_Section4Team13.Controllers
                 return View(ar);
             }
         }
+
+        [HttpGet]
+        public IActionResult Edit(int FilmID)
+        {
+            ViewBag.Categories = myContext.Categories.ToList();
+
+            var task = myContext.Responses.Single(x => x.taskId == FilmID);
+
+            return View("AddEdit", task);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(TaskResponse blah)
+        {
+            myContext.Update(blah);
+            myContext.SaveChanges();
+
+            return RedirectToAction("Quadrants");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int FilmID)
+        {
+            var task = myContext.Responses.Single(x => x.taskId == FilmID);
+
+            return View(task);
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(TaskResponse ar)
+        {
+            myContext.Responses.Remove(ar);
+            myContext.SaveChanges();
+
+            return RedirectToAction("Quadrants");
+        }
+
         public IActionResult Quadrants()
         {
             var myTasks = myContext.Responses.
