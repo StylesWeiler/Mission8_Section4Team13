@@ -89,9 +89,11 @@ namespace Mission8_Section4Team13.Controllers
 
         public IActionResult Quadrants()
         {
-            var myTasks = myContext.Responses.
-                Include(x => x.category).ToList();
-            return View(myTasks);
+                var myTasks = myContext.Responses
+                    .Include(x => x.category)
+                    .Where(x => x.completed == false)
+                    .ToList();
+                return View(myTasks);
         }
 
     }
