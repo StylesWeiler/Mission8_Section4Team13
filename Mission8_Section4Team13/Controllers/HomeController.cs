@@ -51,11 +51,11 @@ namespace Mission8_Section4Team13.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int FilmID)
+        public IActionResult Edit(int taskId)
         {
             ViewBag.Categories = myContext.Categories.ToList();
 
-            var task = myContext.Responses.Single(x => x.taskId == FilmID);
+            var task = myContext.Responses.Single(x => x.taskId == taskId);
 
             return View("AddEdit", task);
         }
@@ -70,9 +70,9 @@ namespace Mission8_Section4Team13.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int FilmID)
+        public IActionResult Delete(int taskId)
         {
-            var task = myContext.Responses.Single(x => x.taskId == FilmID);
+            var task = myContext.Responses.Single(x => x.taskId == taskId);
 
             return View(task);
         }
