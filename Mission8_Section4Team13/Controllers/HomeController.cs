@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission8_Section4Team13.Models;
 using System;
@@ -13,15 +14,47 @@ namespace Mission8_Section4Team13.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private TaskContext myContext { get; set; }
+
+        public HomeController(ILogger<HomeController> logger, TaskContext somename)
         {
             _logger = logger;
+            myContext = somename;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-       
+
+        [HttpGet]
+        public IActionResult AddEdit()
+        {
+            ViewBag.Categories = myContext.Categories.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddEdit(TaskResponse ar)
+        {
+            if (ModelState.IsValid)
+            {
+                myContext.Add(ar);
+                myContext.SaveChanges();
+                return View("Index", ar);
+            }
+            else //if it's invalid
+            {
+                ViewBag.Categories = myContext.Categories.ToList();
+                return View(ar);
+            }
+        }
+        public IActionResult Quadrants()
+        {
+            var myTasks = myContext.Responses.
+                Include(x => x.category).ToList();
+            return View(myTasks);
+        }
+
     }
 }

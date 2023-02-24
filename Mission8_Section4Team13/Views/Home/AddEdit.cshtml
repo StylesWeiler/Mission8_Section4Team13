@@ -7,18 +7,17 @@
 <div>
     <form method="post">
         @*Hidding id passed*@
-                    @*Will probably need new instance of the object to be created when making new task for example from mission 7:
+        @*Will probably need new instance of the object to be created when making new task for example from mission 7:
 
-                    [HttpGet]
-                    public IActionResult NewMovieForm()
-                    {
-                    ViewBag.Categories = _movieContext.Categories.ToList();
+        [HttpGet]
+        public IActionResult NewMovieForm()
+        {
+        ViewBag.Categories = _movieContext.Categories.ToList();
 
-                    return View(new Movie());
-                    }*@
+        return View(new Movie());
+        }*@
 
-        <input asp-for="taskId" type="hidden" />
-
+        <!--<input asp-for="taskId" type="hidden" />-->
         @*Can make hardcoded list if ViewBag is to complicated*@
         <label asp-for="categoryId">Category:</label>
         <select asp-for="categoryId">
